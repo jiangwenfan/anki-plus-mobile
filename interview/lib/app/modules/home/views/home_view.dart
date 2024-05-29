@@ -1,24 +1,46 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-
+import 'package:interview/app/modules/home/views/home_page.dart';
+import './home_page.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
-  const HomeView({Key? key}) : super(key: key);
+  HomeView({super.key});
+
+  final List<Widget> bodyWidget = [
+    const HomePage(),
+    const Text('Mine'),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('HomeView'),
+        title: const Text('Home'),
         centerTitle: true,
+        // #f3f2f6
+        backgroundColor: const Color(0xFFF3F2F6),
       ),
-      body: const Center(
-        child: Text(
-          'HomeView is working',
-          style: TextStyle(fontSize: 20),
+      bottomNavigationBar: Obx(
+        () => BottomNavigationBar(
+          currentIndex: controller.currentTabIndex.value,
+          onTap: (index) {
+            controller.currentTabIndex.value = index;
+          },
+          items: const [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'Home',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.settings),
+              label: 'Mine',
+            ),
+          ],
         ),
       ),
+      body: Obx(() => bodyWidget[controller.currentTabIndex.value]),
     );
   }
 }
