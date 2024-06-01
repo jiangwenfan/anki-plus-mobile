@@ -4,6 +4,7 @@ import '../modules/QuestionAnswer/bindings/question_answer_binding.dart';
 import '../modules/QuestionAnswer/views/question_answer_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
+import '../modules/home/views/question_page.dart';
 import '../modules/home/views/item_detail.dart';
 import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
@@ -41,7 +42,11 @@ class AppPages {
     GetPage(
       name: _Paths.DETAIL,
       page: () => const ItemDetail(),
-      // binding: ItemDetailBinding(),
-    )
+      binding: HomeBinding(),
+    ),
+    GetPage(
+        name: _Paths.QUESTION,
+        page: () => const QuestionPage(),
+        binding: HomeBinding())
   ];
 }

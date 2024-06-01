@@ -16,4 +16,5 @@ abstract class _Paths {
   static const MINE = '/mine';
   static const QUESTION_ANSWER = '/question-answer';
   static const DETAIL = '/detail';
+  static const QUESTION = '/question';
 }

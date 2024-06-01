@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:interview/app/modules/home/controllers/home_controller.dart';
 
 // 技术分类的详情页面
 class ItemDetail extends StatefulWidget {
@@ -11,6 +12,8 @@ class ItemDetail extends StatefulWidget {
 }
 
 class ItemDetailState extends State<ItemDetail> {
+  HomeController homeController = Get.find<HomeController>();
+
   List<Widget> generate_item(List<Map> titleList) {
     // 显示单条面试题目
     return titleList
@@ -66,8 +69,12 @@ class ItemDetailState extends State<ItemDetail> {
                     ),
                     Padding(
                       padding: EdgeInsets.all(10),
-                      child:
-                          ElevatedButton(onPressed: () {}, child: Text("开始学习")),
+                      child: ElevatedButton(
+                          onPressed: () {
+                            Get.toNamed("/question",
+                                arguments: {"questionIndex": 0});
+                          },
+                          child: Text("开始学习")),
                     ),
                   ],
                 )),
