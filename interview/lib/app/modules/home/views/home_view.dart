@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:interview/app/modules/home/views/home_page.dart';
-import './home_page.dart';
+import './bookshelf_page.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
@@ -10,6 +10,7 @@ class HomeView extends GetView<HomeController> {
 
   final List<Widget> bodyWidget = [
     const HomePage(),
+    const BookshelfPage(),
     const Text('Mine'),
   ];
 
@@ -33,6 +34,7 @@ class HomeView extends GetView<HomeController> {
               icon: Icon(Icons.home),
               label: 'Home',
             ),
+            BottomNavigationBarItem(icon: Icon(Icons.book), label: 'Book'),
             BottomNavigationBarItem(
               icon: Icon(Icons.settings),
               label: 'Mine',
