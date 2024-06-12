@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:dio/dio.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -72,16 +73,82 @@ class HomePageState extends State<HomePage> {
     },
   ];
 
+  final List<Map<dynamic, dynamic>> languageData = [];
+  final List<Map<dynamic, dynamic>> frameworkData = [];
+  final List<Map<dynamic, dynamic>> databaseData = [];
+  final List<Map<dynamic, dynamic>> opsData = [];
+
+  void getCategory(String category) async {
+    // String url = "https://host.open-language.space/categories";
+    String url = "http://49.235.138.119:8088/categories?ttype=${category}";
+
+    Dio dio = Dio();
+
+    /*
+    [{ttype: language, name: Python, id: 1},]
+    */
+    // 配置 HttpClientAdapter 以禁用 HTTPS 证书验证
+    final response = await dio.get(url);
+    List<dynamic> res = response.data;
+    print("${category} 分类数据:$res");
+
+    // 给接口数据补充
+    List<Map<dynamic, dynamic>> res2 = res
+        .map((dataItem) => {
+              "title": dataItem['name'],
+              "coverUrl":
+                  "https://www.kasandbox.org/programming-images/avatars/cs-hopper-happy.png",
+              "count": 300,
+            })
+        .toList();
+
+    switch (category) {
+      case "language":
+        setState(() {
+          languageData.addAll(res2);
+        });
+
+        print(languageData);
+        break;
+      case "freamework":
+        setState(() {
+          frameworkData.addAll(res2);
+        });
+        break;
+      case "database":
+        setState(() {
+          databaseData.addAll(res2);
+        });
+        break;
+      case "ops":
+        setState(() {
+          opsData.addAll(res2);
+        });
+        break;
+      default:
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    // "'language', 'freamework', 'database' or 'ops'"
+    getCategory("language");
+    getCategory("freamework");
+    getCategory("database");
+    getCategory('ops');
+  }
+
   @override
   Widget build(BuildContext context) {
     return ListView(children: [
       BlockCategory(
         title: "语言",
-        contentWidget: BlockCategoryContent(contentList: contentList),
+        contentWidget: BlockCategoryContent(contentList: languageData),
       ),
       BlockCategory(
         title: "框架",
-        contentWidget: BlockCategoryContent(contentList: contentList),
+        contentWidget: BlockCategoryContent(contentList: frameworkData),
       ),
       BlockCategory(
         title: "数据库",

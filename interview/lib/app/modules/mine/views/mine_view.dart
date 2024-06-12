@@ -14,9 +14,17 @@ class MineView extends GetView<MineController> {
         centerTitle: true,
       ),
       body: const Center(
-        child: Text(
-          'MineView is working',
-          style: TextStyle(fontSize: 20),
+        child: Center(
+          child: Column(
+            children: [
+              TextField(
+                decoration: InputDecoration(
+                  labelText: '技术名称',
+                ),
+              ),
+              // DropdownButton(items: [DropdownMenuItem(child: Text("language"))]), onChanged: (String? value){})
+            ],
+          ),
         ),
       ),
     );
