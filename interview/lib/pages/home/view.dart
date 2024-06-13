@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:interview/pages/home_explore/home_page.dart';
-import '../../home_bookshelf/bookshelf_page.dart';
-import '../controllers/home_controller.dart';
+import '../home_bookshelf/bookshelf_page.dart';
+import 'controller.dart';
 
 class HomeView extends GetView<HomeController> {
   HomeView({super.key});

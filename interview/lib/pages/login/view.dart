@@ -5,20 +5,20 @@ import 'package:get/get.dart';
 import 'controller.dart';
 
 class LoginView extends GetView<LoginController> {
-  const LoginView({Key? key}) : super(key: key);
+  const LoginView({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('登陆'),
+        title: const Text('登陆页面'),
         centerTitle: true,
       ),
       body: Center(
-        child: TextButton(
+        child: ElevatedButton(
             onPressed: () {
               Get.toNamed(Routes.home);
             },
-            child: Text('登陆成功')),
+            child: const Text('登陆成功')),
       ),
     );
   }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:interview/pages/home/controllers/home_controller.dart';
+import 'package:interview/pages/home/controller.dart';
 
 // 技术分类的详情页面
 class ItemDetail extends StatefulWidget {
