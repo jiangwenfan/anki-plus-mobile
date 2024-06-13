@@ -78,51 +78,52 @@ class HomePageState extends State<HomePage> {
   final List<Map<dynamic, dynamic>> databaseData = [];
   final List<Map<dynamic, dynamic>> opsData = [];
 
-  void getCategory(String category) async {
+  // 获取categories接口的所有数据
+  void getCategoriesData(String category) async {
     // String url = "https://host.open-language.space/categories";
-    String url = "http://49.235.138.119:8088/categories?ttype=${category}";
+    String url = "http://49.235.138.119:8080/categories?ttype=${category}";
 
     Dio dio = Dio();
 
-    /*
-    [{ttype: language, name: Python, id: 1},]
-    */
-    // 配置 HttpClientAdapter 以禁用 HTTPS 证书验证
     final response = await dio.get(url);
-    List<dynamic> res = response.data;
-    print("${category} 分类数据:$res");
+    Map<String, dynamic> responseData = response.data;
+    print("${category} 分类数据:${response.data}");
 
-    // 给接口数据补充
-    List<Map<dynamic, dynamic>> res2 = res
-        .map((dataItem) => {
-              "title": dataItem['name'],
-              "coverUrl":
-                  "https://www.kasandbox.org/programming-images/avatars/cs-hopper-happy.png",
-              "count": 300,
-            })
-        .toList();
+    // 将List<dynamic>转为List<Map<dynamic, dynamic>>
+    List<Map<dynamic, dynamic>>? res = [];
+    for (var e in responseData[category]) {
+      res.add({
+        "id": e["id"],
+        "name": e["name"],
+        "ttype": e["ttype"],
+        "coverUrl": e["coverUrl"],
+        "count": e["count"]
+      });
+    }
+    print(
+        "--> res:${res.runtimeType},---> ${responseData[category].runtimeType}");
 
     switch (category) {
       case "language":
         setState(() {
-          languageData.addAll(res2);
+          languageData.addAll(res);
         });
 
         print(languageData);
         break;
       case "freamework":
         setState(() {
-          frameworkData.addAll(res2);
+          frameworkData.addAll(res);
         });
         break;
       case "database":
         setState(() {
-          databaseData.addAll(res2);
+          databaseData.addAll(res);
         });
         break;
       case "ops":
         setState(() {
-          opsData.addAll(res2);
+          opsData.addAll(res);
         });
         break;
       default:
@@ -133,10 +134,10 @@ class HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     // "'language', 'freamework', 'database' or 'ops'"
-    getCategory("language");
-    getCategory("freamework");
-    getCategory("database");
-    getCategory('ops');
+    getCategoriesData("language");
+    getCategoriesData("freamework");
+    getCategoriesData("database");
+    getCategoriesData('ops');
   }
 
   @override

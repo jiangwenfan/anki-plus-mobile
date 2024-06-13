@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:interview/app/modules/home/views/home_page.dart';
-import './bookshelf_page.dart';
+import 'package:interview/pages/home_explore/home_page.dart';
+import '../../home_bookshelf/bookshelf_page.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {

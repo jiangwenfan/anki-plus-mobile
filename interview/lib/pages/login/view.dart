@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-
+import '../../routes.dart';
 import 'package:get/get.dart';
 
-import '../controllers/login_controller.dart';
+import 'controller.dart';
 
 class LoginView extends GetView<LoginController> {
   const LoginView({Key? key}) : super(key: key);
@@ -11,11 +10,15 @@ class LoginView extends GetView<LoginController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('LoginView'),
+        title: const Text('登陆'),
         centerTitle: true,
       ),
       body: Center(
-        child: TextButton(onPressed: () {}, child: Text('Login')),
+        child: TextButton(
+            onPressed: () {
+              Get.toNamed(Routes.home);
+            },
+            child: Text('登陆成功')),
       ),
     );
   }
