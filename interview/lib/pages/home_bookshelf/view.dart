@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class BookshelfPage extends StatefulWidget {
-  const BookshelfPage({super.key});
+class HomeBookshelfView extends StatefulWidget {
+  const HomeBookshelfView({super.key});
 
   @override
-  BookshelfPageState createState() => BookshelfPageState();
+  HomeBookshelfViewState createState() => HomeBookshelfViewState();
 }
 
-class BookshelfPageState extends State<BookshelfPage> {
+class HomeBookshelfViewState extends State<HomeBookshelfView> {
   @override
   Widget build(BuildContext context) {
     return Center(

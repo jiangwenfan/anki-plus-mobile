@@ -4,8 +4,8 @@ import 'package:get/get.dart';
 import 'package:dio/dio.dart';
 import 'controller.dart';
 
-class MineView extends GetView<MineController> {
-  const MineView({Key? key}) : super(key: key);
+class HomeMineView extends GetView<MineController> {
+  const HomeMineView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(

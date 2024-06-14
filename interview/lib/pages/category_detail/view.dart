@@ -4,14 +4,14 @@ import 'package:get/get.dart';
 import 'package:interview/pages/home/controller.dart';
 
 // 技术分类的详情页面
-class ItemDetail extends StatefulWidget {
-  const ItemDetail({super.key});
+class CategoryDetailView extends StatefulWidget {
+  const CategoryDetailView({super.key});
 
   @override
-  State<ItemDetail> createState() => ItemDetailState();
+  State<CategoryDetailView> createState() => CategoryDetailViewState();
 }
 
-class ItemDetailState extends State<ItemDetail> {
+class CategoryDetailViewState extends State<CategoryDetailView> {
   HomeController homeController = Get.find<HomeController>();
 
   List<Widget> generate_item(List<Map> titleList) {

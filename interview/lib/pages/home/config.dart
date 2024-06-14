@@ -14,6 +14,6 @@ class HomeBinding extends Bindings {
 
 final homePage = GetPage(
   name: Routes.home,
-  page: () => HomeView(),
+  page: () => const HomeView(),
   binding: HomeBinding(),
 );

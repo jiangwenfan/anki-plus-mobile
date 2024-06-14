@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:dio/dio.dart';
-import '../../../app/pages/mine/controllers/mine_controller.dart';
+// import '../../app/pages/mine/controllers/mine_controller.dart';
 
-class MineView extends GetView<MineController> {
+// GetView<MineController>
+class MineView extends GetView {
   const MineView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {

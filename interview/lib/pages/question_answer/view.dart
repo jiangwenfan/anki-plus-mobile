@@ -7,14 +7,14 @@ import '../home/controller.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:markdown/markdown.dart' as md;
 
-class QuestionPage extends StatefulWidget {
-  const QuestionPage({super.key});
+class QAView extends StatefulWidget {
+  const QAView({super.key});
 
   @override
-  State<QuestionPage> createState() => QuestionPageState();
+  State<QAView> createState() => QAViewState();
 }
 
-class QuestionPageState extends State<QuestionPage> {
+class QAViewState extends State<QAView> {
   final HomeController controller = Get.find<HomeController>();
 
   @override

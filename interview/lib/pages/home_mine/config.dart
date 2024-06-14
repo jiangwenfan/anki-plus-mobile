@@ -14,7 +14,7 @@ class MineBinding extends Bindings {
 }
 
 final homeMinePage = GetPage(
-  name: Routes.mine,
-  page: () => const MineView(),
+  name: Routes.homeMine,
+  page: () => const HomeMineView(),
   binding: MineBinding(),
 );
