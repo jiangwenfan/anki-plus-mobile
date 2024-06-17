@@ -15,7 +15,7 @@ Future<CategoryDataStatus> fetchCategory() async {
   final send = SendRequest(url);
   final RequestResponse requestResponse = await send.get();
 
-  final rawResponse = requestResponse.response;
+  final rawResponse = requestResponse.rawResponse;
   final requestStatus = requestResponse.status;
 
   if (requestStatus && rawResponse != null) {
@@ -43,5 +43,25 @@ Future<CategoryDataStatus> fetchCategory() async {
     logger.w("category接口获取数据[失败]! 原生响应:$rawResponse");
     return CategoryDataStatus(
         status: requestResponse.status, errorMsg: requestResponse.errorMsg);
+  }
+}
+
+// 创建分类数据
+Future<bool> createCategory(Map data) async {
+  const String url = "$backendHomeUrl/categories";
+  logger.d("创建所有分类数据:$url");
+
+  final send = SendRequest(url);
+
+  final RequestResponse requestResponse = await send.post(data);
+
+  final rawResponse = requestResponse.rawResponse;
+  final requestStatus = requestResponse.status;
+  if (requestStatus && rawResponse != null) {
+    logger.i("category接口创建数据[成功]!");
+    return true;
+  } else {
+    logger.w("category接口创建数据[失败]! 原生响应:$rawResponse");
+    return false;
   }
 }

@@ -7,6 +7,6 @@ class DataStatus {
 
 // 接口请求的`响应结果`
 class RequestResponse extends DataStatus {
-  String? response;
-  RequestResponse({required super.status, super.errorMsg, this.response});
+  String? rawResponse;
+  RequestResponse({required super.status, super.errorMsg, this.rawResponse});
 }
