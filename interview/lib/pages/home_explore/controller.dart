@@ -1,72 +1,37 @@
 import 'package:get/get.dart';
+import '../../api/categories.dart';
+import '../../models/category.dart';
+import 'package:logger/logger.dart';
+
+final logger = Logger();
 
 class HomeExploreController extends GetxController {
-  final List<Map<dynamic, dynamic>> contentList = [];
-
-  final List<Map<dynamic, dynamic>> languageData = [];
-  final List<Map<dynamic, dynamic>> frameworkData = [];
-  final List<Map<dynamic, dynamic>> databaseData = [];
-  final List<Map<dynamic, dynamic>> opsData = [];
+  final RxMap<String, CategoryModelSet> categoryApiData =
+      <String, CategoryModelSet>{}.obs;
+  final RxString errorMsg = "".obs;
+  final RxBool isLoading = true.obs;
 
   // 获取categories接口的所有数据
-  void getCategoriesData(String category) async {
-    String url = "http://49.235.138.119:8080/categories";
+  void handleCategoryData() async {
+    // "'language', 'freamework', 'database' or 'ops'"
+    final CategoryDataStatus res = await fetchCategory();
 
-    Dio dio = Dio();
+    isLoading.value = res.status;
 
-    final response = await dio.get(url);
-    Map<String, dynamic> responseData = response.data;
-    print("${category} 分类数据:${response.data}");
-
-    // 将List<dynamic>转为List<Map<dynamic, dynamic>>
-    List<Map<dynamic, dynamic>>? res = [];
-    for (var e in responseData[category]) {
-      res.add({
-        "id": e["id"],
-        "name": e["name"],
-        "ttype": e["ttype"],
-        "coverUrl": e["coverUrl"],
-        "count": e["count"]
-      });
-    }
-    print(
-        "--> res:${res.runtimeType},---> ${responseData[category].runtimeType}");
-
-    switch (category) {
-      case "language":
-        setState(() {
-          languageData.addAll(res);
-        });
-
-        print(languageData);
-        break;
-      case "freamework":
-        setState(() {
-          frameworkData.addAll(res);
-        });
-        break;
-      case "database":
-        setState(() {
-          databaseData.addAll(res);
-        });
-        break;
-      case "ops":
-        setState(() {
-          opsData.addAll(res);
-        });
-        break;
-      default:
+    if (res.status) {
+      errorMsg.value = res.errorMsg as String;
+      logger.i("响应状态异常!已修改");
+    } else {
+      categoryApiData.value = res.response as Map<String, CategoryModelSet>;
+      logger.i("获取成功");
     }
   }
 
   @override
   void onInit() {
     super.onInit();
-    // "'language', 'freamework', 'database' or 'ops'"
-    getCategoriesData("language");
-    getCategoriesData("freamework");
-    getCategoriesData("database");
-    getCategoriesData('ops');
+    // 获取处理接口数据
+    handleCategoryData();
   }
 
   @override

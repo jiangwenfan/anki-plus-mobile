@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'widgets/category_item.dart';
+import 'controller.dart';
 
 class HomeExploreView extends StatefulWidget {
   const HomeExploreView({super.key});
@@ -10,25 +11,26 @@ class HomeExploreView extends StatefulWidget {
 }
 
 class HomeExploreViewState extends State<HomeExploreView> {
+  HomeExploreController homeExploreController = Get.find();
+
   @override
   Widget build(BuildContext context) {
-    return ListView(children: [
-      CItem(
-        title: "语言",
-        contentWidget: BlockCategoryContent(contentList: languageData),
-      ),
-      CItem(
-        title: "框架",
-        contentWidget: BlockCategoryContent(contentList: frameworkData),
-      ),
-      CItem(
-        title: "数据库",
-        contentWidget: BlockCategoryContent(contentList: contentList),
-      ),
-      CItem(
-        title: "其他",
-        contentWidget: BlockCategoryContent(contentList: contentList),
-      )
-    ]);
+    return Obx(() => homeExploreController.isLoading.value
+        ? const CircularProgressIndicator(
+            backgroundColor: Colors.green,
+            valueColor: AlwaysStoppedAnimation(Colors.blueAccent),
+          )
+        : ListView.builder(
+            itemBuilder: (context, index) {
+              List<String> keys =
+                  homeExploreController.categoryApiData.keys.toList();
+              String title = keys[index];
+              return CItem(
+                title: title,
+                contentWidget: CItemContent(
+                    contentList: homeExploreController.categoryApiData[title]!),
+              );
+            },
+            itemCount: homeExploreController.categoryApiData.length));
   }
 }

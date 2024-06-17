@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import '../../../models/category.dart';
 
 // explore页面由多个categoryItem widget组成。
 class CItem extends StatefulWidget {
@@ -35,7 +36,7 @@ class CItemState extends State<CItem> {
 
 // 每个categoryItem widget由多个catgeoryItemContent 组成
 class CItemContent extends StatefulWidget {
-  final List<Map> contentList;
+  final CategoryModelSet contentList;
 
   const CItemContent({super.key, required this.contentList});
 
@@ -44,30 +45,28 @@ class CItemContent extends StatefulWidget {
 }
 
 class CItemContentState extends State<CItemContent> {
-  List<Widget> generateContentCard() {
-    return widget.contentList
-        .map((e) => ItemCard(
-              Item: e,
-            ))
-        .toList();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
       height: 200,
-      child: ListView(
-          scrollDirection: Axis.horizontal, children: generateContentCard()),
+      child: ListView.builder(
+          itemCount: widget.contentList.length,
+          scrollDirection: Axis.horizontal,
+          itemBuilder: (context, index) {
+            return ItemCard(
+              item: widget.contentList[index],
+            );
+          }),
     );
   }
 }
 
 // 每个子类的显示卡片
 class ItemCard extends StatefulWidget {
-  final Map Item;
+  final CategoryModel item;
 
-  const ItemCard({super.key, required this.Item});
+  const ItemCard({super.key, required this.item});
 
   @override
   State<ItemCard> createState() => ItemCardState();
@@ -85,7 +84,7 @@ class ItemCardState extends State<ItemCard> {
 
       child: InkWell(
         onTap: () {
-          Get.toNamed('/detail', arguments: widget.Item);
+          Get.toNamed('/detail', arguments: widget.item);
         },
         child: Container(
           height: 150,
@@ -93,10 +92,11 @@ class ItemCardState extends State<ItemCard> {
           child: Column(
             children: [
               Padding(
-                padding: EdgeInsets.all(10),
+                padding: const EdgeInsets.all(10),
                 child: Text(
-                  widget.Item['title'],
-                  style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold),
+                  widget.item.name,
+                  style: const TextStyle(
+                      fontSize: 23, fontWeight: FontWeight.bold),
                 ),
               ),
               Padding(
@@ -107,7 +107,7 @@ class ItemCardState extends State<ItemCard> {
                   // decoration: BoxDecoration(
                   //     // borderRadius: BorderRadius.circular(10),
                   //     color: Colors.green),
-                  child: Image.network(widget.Item['coverUrl']),
+                  child: Image.network(widget.item.coverUrl),
                 ),
               ),
             ],

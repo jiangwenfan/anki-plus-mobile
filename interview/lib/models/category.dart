@@ -1,5 +1,8 @@
+import 'common.dart';
+
+typedef CategoryModelSet = List<CategoryModel>;
 // category接口的返回数据类型
-typedef CategoryResponse = Map<String, CategoryModel>;
+typedef CategoryResponse = Map<String, CategoryModelSet>;
 
 // Category接口中每个category的数据
 class CategoryModel {
@@ -27,21 +30,8 @@ class CategoryModel {
   }
 }
 
-// 结果处理
-class ResHandle {
-  bool status;
-  String? errorMsg;
-  ResHandle({required this.status, this.errorMsg});
-}
-
-// 结果接口响应处理
-class ResResponseHandle extends ResHandle {
-  String? response;
-  ResResponseHandle({required super.status, super.errorMsg, this.response});
-}
-
 // 接口转换处理
-class ResChangeHandle extends ResHandle {
-  CategoryModel? response;
-  ResChangeHandle({required super.status, super.errorMsg, this.response});
+class CategoryDataStatus extends DataStatus {
+  CategoryResponse? response;
+  CategoryDataStatus({required super.status, super.errorMsg, this.response});
 }

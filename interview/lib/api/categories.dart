@@ -1,25 +1,47 @@
-// 处理category接口
-class HandleCategoryAPi {
-  Future<ResChangeHandle> handleGet() async {
-    String url = "";
-    final h = HandleRequest(url);
+import '../models/common.dart';
+import '../models/category.dart';
+import 'package:logger/logger.dart';
+import 'dart:convert';
+import '../config.dart';
+import '../utils.dart';
 
-    final ResResponseHandle resData = await h.sendGet();
-    final responseData = resData.response;
+final logger = Logger();
 
-    if (resData.status && responseData != null) {
-      final response = json.decode(responseData);
+// 获取所有分类数据
+Future<CategoryDataStatus> fetchCategory() async {
+  const String url = "$backendHomeUrl/categories";
+  logger.d("获取所有分类数据:$url");
 
-      // 将category接口中每一个value转为model
-      final res = response.map((key, value) {
-        final newValue = CategoryModel.fromJson(value);
-        return MapEntry(key, newValue);
-      });
-      logger.i("转换model $url 成功");
-      return res;
-    } else {
-      return ResChangeHandle(
-          status: resData.status, errorMsg: resData.errorMsg);
+  final send = SendRequest(url);
+  final RequestResponse requestResponse = await send.get();
+
+  final rawResponse = requestResponse.response;
+  final requestStatus = requestResponse.status;
+
+  if (requestStatus && rawResponse != null) {
+    final responseData = json.decode(rawResponse);
+    logger.d("category接口获取数据[成功]! $responseData");
+
+    if (responseData is! Map) {
+      logger.w("category接口返回数据[格式错误]! 类型:${responseData.runtimeType}");
+      return CategoryDataStatus(
+          status: false, errorMsg: "category接口返回数据[格式错误]!");
     }
+
+    // 将category接口中每一个value转为model
+    final modelResponse = responseData.map((key, dataList) {
+      final List<CategoryModel> dataListNew = dataList.map((dataItem) {
+        final newValue = CategoryModel.fromJson(dataItem);
+        return newValue;
+      });
+
+      return MapEntry(key.toString(), dataListNew);
+    });
+    logger.i("category接口返回数据[转换model成功]");
+    return CategoryDataStatus(status: true, response: modelResponse);
+  } else {
+    logger.w("category接口获取数据[失败]! 原生响应:$rawResponse");
+    return CategoryDataStatus(
+        status: requestResponse.status, errorMsg: requestResponse.errorMsg);
   }
 }

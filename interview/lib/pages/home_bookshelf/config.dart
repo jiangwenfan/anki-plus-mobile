@@ -16,5 +16,5 @@ class HomeBookshelfBinding extends Bindings {
 
 final homeBookshelfPage = GetPage(
     name: Routes.homeBookshelf,
-    page: () => HomeBookshelfView(),
+    page: () => const HomeBookshelfView(),
     binding: HomeBinding());
