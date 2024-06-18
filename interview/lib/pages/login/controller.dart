@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../../utils.dart';
 
 class LoginController extends GetxController {
   // 是否已经登录
@@ -21,8 +22,9 @@ class LoginController extends GetxController {
   }
 
   // 更新登录状态
-  void updateLoginStatus(bool status, String token) {
+  Future<bool> updateLoginStatus(bool status, String token) async {
     isLogin.value = status;
     // 保存token
+    return await writeLocalToken(token);
   }
 }

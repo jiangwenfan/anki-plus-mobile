@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:logger/logger.dart';
 import 'models/common.dart';
 import 'dart:convert';
+import 'package:shared_preferences/shared_preferences.dart';
 
 final logger = Logger();
 
@@ -44,4 +45,31 @@ class SendRequest {
       return res;
     }
   }
+}
+
+// 获取登录token
+Future<String?> getLocalToken() async {
+  final prefs = await SharedPreferences.getInstance();
+  String? token = prefs.getString("token");
+  logger.i("获取token成功-$token");
+  return token;
+}
+
+// 写入登录token
+Future<bool> writeLocalToken(String token) async {
+  final prefs = await SharedPreferences.getInstance();
+  try {
+    prefs.setString("token", token);
+    logger.i("写入token成功! ${token}");
+    return true;
+  } catch (e) {
+    logger.e("写入token出错");
+    return false;
+  }
+}
+
+// 删除token
+Future<void> removeLocalToken() async {
+  final prefs = await SharedPreferences.getInstance();
+  prefs.remove("token");
 }

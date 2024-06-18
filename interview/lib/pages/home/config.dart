@@ -3,13 +3,23 @@ import '../../routes.dart';
 import 'controller.dart';
 import 'view.dart';
 import '../home_explore/controller.dart';
+import 'middleware.dart';
 
-class HomeBinding extends Bindings {
+class GlobalBinding extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut<HomeController>(
       () => HomeController(),
     );
+  }
+}
+
+class HomeBinding extends Bindings {
+  @override
+  void dependencies() {
+    // Get.lazyPut<HomeController>(
+    //   () => HomeController(),
+    // );
     Get.lazyPut<HomeExploreController>(
       () => HomeExploreController(),
     );
@@ -21,4 +31,5 @@ final homePage = GetPage(
   name: Routes.home,
   page: () => const HomeView(),
   binding: HomeBinding(),
+  middlewares: [HomeMiddleware()],
 );

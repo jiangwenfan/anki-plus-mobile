@@ -15,12 +15,17 @@ class LoginView extends GetView<LoginController> {
         ),
         body: Obx(() => Center(
               child: ElevatedButton(
-                  onPressed: () {
-                    Get.offAndToNamed(Routes.home);
+                  onPressed: () async {
                     // 发送登录请求,获取token
-                    String token = "";
+                    String token = "1212";
                     // 更新登录状态
-                    controller.updateLoginStatus(true, token);
+                    bool status =
+                        await controller.updateLoginStatus(true, token);
+                    if (status) {
+                      Get.offAndToNamed(Routes.home);
+                    } else {
+                      Get.snackbar("msg", "登录失败");
+                    }
                   },
                   child: Text('登陆成功 ${controller.isLogin.value}')),
             )));

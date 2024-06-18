@@ -4,6 +4,9 @@ import 'pages/home/config.dart';
 import 'pages/home_explore/config.dart';
 import 'package:interview/pages/home_bookshelf/config.dart';
 import 'pages/home_mine/config.dart';
+import 'pages/admin/config.dart';
+import 'pages/admin_category/config.dart';
+import 'pages/admin_qa/config.dart';
 
 import 'pages/question_answer/config.dart';
 import 'pages/category_detail/config.dart';
@@ -21,6 +24,10 @@ abstract class Routes {
   // 其他
   static const qa = '/qa';
   static const categoryDetail = '/detail';
+  // admin
+  static const admin = "/admin";
+  static const adminCategory = "/adminCategory";
+  static const adminQA = "/qa";
 }
 
 // 页面路由配置
@@ -34,4 +41,8 @@ final getPages = [
   // 其他
   qaPage,
   categoryDetailPage,
+  // admin
+  adminPage,
+  adminCategoryPage,
+  adminQAPage,
 ];

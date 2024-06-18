@@ -13,7 +13,7 @@ class HomeView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Home页面'),
+        title: Obx(() => controller.titles[controller.currentTabIndex.value]),
         centerTitle: true,
         // #f3f2f6
         backgroundColor: const Color(0xFFF3F2F6),

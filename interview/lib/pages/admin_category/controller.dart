@@ -1,11 +1,14 @@
 import 'package:get/get.dart';
 
 class AdminCategoryController extends GetxController {
-  RxString name = "".obs;
-  RxString coverUrl = "".obs;
-  RxString ttype = "".obs;
+  RxnString name = RxnString(null);
+  // RxString? name = "".obs;
+  RxnString coverUrl = RxnString(null);
+  // RxString? coverUrl = "".obs;
+  RxnString ttype = RxnString(null);
+  // RxString? ttype = "".obs;
   // 当前技术分类所属顶层类型
-  RxString currentCategoryType = "".obs;
+  RxnString currentCategoryType = RxnString(null);
 
   // 下拉框的选项
   final List<String> dropdownItems = [
