@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:logger/logger.dart';
 import 'models/common.dart';
+import 'dart:convert';
 
 final logger = Logger();
 
@@ -18,8 +19,10 @@ class SendRequest {
   Future<RequestResponse> get() async {
     final response = await dio.get(url);
     if (response.statusCode == 200) {
-      logger.i("get请求,$url 成功");
-      final res = RequestResponse(status: true, rawResponse: response.data);
+      // response.data Map<String, dynamic>
+      logger.i("get请求,$url 成功. ${response.data}");
+      final res = RequestResponse(
+          status: true, rawResponse: json.encode(response.data));
       return res;
     } else {
       logger.w("get请求,$url 接口[状态]异常");

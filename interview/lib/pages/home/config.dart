@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import '../../routes.dart';
 import 'controller.dart';
 import 'view.dart';
+import '../home_explore/controller.dart';
 
 class HomeBinding extends Bindings {
   @override
@@ -9,6 +10,10 @@ class HomeBinding extends Bindings {
     Get.lazyPut<HomeController>(
       () => HomeController(),
     );
+    Get.lazyPut<HomeExploreController>(
+      () => HomeExploreController(),
+    );
+    print("home绑定");
   }
 }
 

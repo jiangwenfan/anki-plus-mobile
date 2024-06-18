@@ -20,7 +20,7 @@ Future<CategoryDataStatus> fetchCategory() async {
 
   if (requestStatus && rawResponse != null) {
     final responseData = json.decode(rawResponse);
-    logger.d("category接口获取数据[成功]! $responseData");
+    logger.d("category接口获取数据[成功]! ${responseData.runtimeType} $responseData");
 
     if (responseData is! Map) {
       logger.w("category接口返回数据[格式错误]! 类型:${responseData.runtimeType}");
@@ -30,12 +30,29 @@ Future<CategoryDataStatus> fetchCategory() async {
 
     // 将category接口中每一个value转为model
     final modelResponse = responseData.map((key, dataList) {
-      final List<CategoryModel> dataListNew = dataList.map((dataItem) {
-        final newValue = CategoryModel.fromJson(dataItem);
-        return newValue;
-      });
+      // print(
+      //     "---> ${key} ${key.runtimeType} ${dataList.runtimeType} ${dataList}");
+      String keyString = key.toString();
 
-      return MapEntry(key.toString(), dataListNew);
+      final List<CategoryModel> dataListNew1 = [];
+      for (var dataItem in dataList) {
+        final CategoryModel newValue = CategoryModel.fromJson(dataItem);
+        dataListNew1.add(newValue);
+      }
+      // List<dynamic> dataList =
+      // List<CategoryModel>
+      // final List<CategoryModel> dataListNew1 =
+      //     (dataList as List<Map<String, dynamic>>).map((dynamic dataItem) {
+      //   // Map<String, dynamic> dataItem2 = dataItem as Map<String, dynamic>;
+      //   // print("每一个item数据: ${dataItem.runtimeType} ${dataItem}");
+      //   final CategoryModel newValue = CategoryModel.fromJson(dataItem);
+      //   print("类型: ${newValue.runtimeType}");
+      //   return newValue;
+      // }).toList();
+      print("累2:${dataListNew1.runtimeType}");
+
+      final List<CategoryModel> dataListNew = dataListNew1;
+      return MapEntry(keyString, dataListNew);
     });
     logger.i("category接口返回数据[转换model成功]");
     return CategoryDataStatus(status: true, response: modelResponse);

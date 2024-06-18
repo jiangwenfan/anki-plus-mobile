@@ -1,7 +1,10 @@
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginController extends GetxController {
-  final count = 0.obs;
+  // 是否已经登录
+  RxBool isLogin = false.obs;
+
   @override
   void onInit() {
     super.onInit();
@@ -17,5 +20,9 @@ class LoginController extends GetxController {
     super.onClose();
   }
 
-  void increment() => count.value++;
+  // 更新登录状态
+  void updateLoginStatus(bool status, String token) {
+    isLogin.value = status;
+    // 保存token
+  }
 }

@@ -97,6 +97,7 @@ class ItemCardState extends State<ItemCard> {
                   widget.item.name,
                   style: const TextStyle(
                       fontSize: 23, fontWeight: FontWeight.bold),
+                  overflow: TextOverflow.ellipsis,
                 ),
               ),
               Padding(

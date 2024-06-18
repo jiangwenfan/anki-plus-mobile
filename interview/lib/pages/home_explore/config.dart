@@ -9,6 +9,7 @@ class HomeExploreBinding extends Bindings {
     Get.lazyPut<HomeExploreController>(
       () => HomeExploreController(),
     );
+    print("绑定成功了");
   }
 }
 

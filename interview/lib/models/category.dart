@@ -25,7 +25,7 @@ class CategoryModel {
         id: json["id"],
         name: json["name"],
         ttype: json["ttype"],
-        coverUrl: json["coverUrl"],
+        coverUrl: json["cover_url"],
         count: json["count"]);
   }
 }

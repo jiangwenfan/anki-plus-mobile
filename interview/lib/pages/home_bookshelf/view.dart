@@ -32,7 +32,7 @@ class HomeBookshelfViewState extends State<HomeBookshelfView> {
                 child: Column(children: [
                   // 图片必须满足这个宽高比.132*185 0.71
                   Image.network(
-                    "https://img2.imgtp.com/2024/06/01/xjXrwHgV.jpg",
+                    "https://s21.ax1x.com/2024/06/18/pk0crgU.jpg",
                     fit: BoxFit.fill,
                   ),
                   const SizedBox(height: 10),

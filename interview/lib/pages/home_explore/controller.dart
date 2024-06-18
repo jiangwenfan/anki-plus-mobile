@@ -18,12 +18,17 @@ class HomeExploreController extends GetxController {
 
     isLoading.value = res.status;
 
-    if (res.status) {
+    if (!res.status) {
+      print("-->${res.errorMsg}");
       errorMsg.value = res.errorMsg as String;
       logger.i("响应状态异常!已修改");
+      // 修改加载状态
+      isLoading.value = false;
     } else {
       categoryApiData.value = res.response as Map<String, CategoryModelSet>;
       logger.i("获取成功");
+      // 修改加载状态
+      isLoading.value = false;
     }
   }
 
