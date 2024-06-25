@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
 import 'pages/home/config.dart';
 import 'package:get/get.dart';
-import 'pages/home/controller.dart';
 import 'utils.dart';
+import 'package:logger/logger.dart';
 
 import 'routes.dart';
 
-String? tokenData = null;
+String? tokenData;
+Logger logger = Logger();
 
 void main() async {
-  // Get.put<HomeController>(HomeController());
-  // GetMaterialApp
   WidgetsFlutterBinding.ensureInitialized();
   tokenData = await getLocalToken();
-  print("main函数中: $tokenData");
+  logger.i("token: $tokenData");
   runApp(GetMaterialApp(
     title: "Application",
     initialRoute: Routes.home,

@@ -17,19 +17,15 @@ class GlobalBinding extends Bindings {
 class HomeBinding extends Bindings {
   @override
   void dependencies() {
-    // Get.lazyPut<HomeController>(
-    //   () => HomeController(),
-    // );
     Get.lazyPut<HomeExploreController>(
       () => HomeExploreController(),
     );
-    print("home绑定");
   }
 }
 
 final homePage = GetPage(
   name: Routes.home,
-  page: () => const HomeView(),
+  page: () => HomeView(),
   binding: HomeBinding(),
   middlewares: [HomeMiddleware()],
 );

@@ -5,7 +5,8 @@ import 'package:get/get.dart';
 import 'controller.dart';
 
 class LoginView extends GetView<LoginController> {
-  const LoginView({super.key});
+  LoginView({super.key});
+  LoginController controller = Get.find<LoginController>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(

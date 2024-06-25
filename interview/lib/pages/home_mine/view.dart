@@ -8,9 +8,14 @@ import '../home/controller.dart';
 
 final logger = Logger();
 
-class HomeMineView extends GetView<MineController> {
-  HomeMineView({super.key});
+class HomeMineView extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return HomeMineViewState();
+  }
+}
 
+class HomeMineViewState extends State<HomeMineView> {
   HomeController ex = Get.find<HomeController>();
 
   @override

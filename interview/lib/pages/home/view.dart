@@ -6,8 +6,10 @@ import 'package:logger/logger.dart';
 
 final logger = Logger();
 
-class HomeView extends GetView<HomeController> {
-  const HomeView({super.key});
+class HomeView extends StatelessWidget {
+  HomeView({super.key});
+
+  HomeController controller = Get.find<HomeController>();
 
   @override
   Widget build(BuildContext context) {

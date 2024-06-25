@@ -1,8 +1,6 @@
 import 'package:flutter/src/widgets/navigator.dart';
 import 'package:get/get.dart';
 import '../../routes.dart';
-import 'controller.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import '../../main.dart';
 
 class HomeMiddleware extends GetMiddleware {

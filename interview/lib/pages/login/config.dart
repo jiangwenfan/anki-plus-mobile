@@ -17,6 +17,6 @@ class LoginBinding extends Bindings {
 // 页面配置
 final loginPage = GetPage(
   name: Routes.login,
-  page: () => const LoginView(),
+  page: () => LoginView(),
   binding: LoginBinding(),
 );

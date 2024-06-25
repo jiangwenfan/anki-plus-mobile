@@ -1,11 +1,8 @@
-import 'dart:ffi';
-
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import '../home_bookshelf/view.dart';
 import '../home_explore/view.dart';
 import '../home_mine/view.dart';
-import '../../utils.dart';
 
 class HomeController extends GetxController {
   // 标题
