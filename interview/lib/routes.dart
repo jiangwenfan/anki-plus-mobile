@@ -26,6 +26,7 @@ abstract class Routes {
   static const categoryDetail = '/detail';
   // admin
   static const admin = "/admin";
+  static const adminAddCategory = "/adminAddCategory";
   static const adminCategory = "/adminCategory";
   static const adminQA = "/qa";
 }
@@ -44,5 +45,6 @@ final getPages = [
   // admin
   adminPage,
   adminCategoryPage,
+  adminAddCategoryPage,
   adminQAPage,
 ];

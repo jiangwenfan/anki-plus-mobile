@@ -30,6 +30,14 @@ class CategoryModel {
   }
 }
 
+// 给CategoryModel增加了分类字段
+class ListCategoryModel {
+  CategoryModel categoryModel;
+  String bigCategory;
+
+  ListCategoryModel({required this.categoryModel, required this.bigCategory});
+}
+
 // 接口转换处理
 class CategoryDataStatus extends DataStatus {
   CategoryResponse? response;

@@ -14,18 +14,7 @@ class AdminViewState extends State<AdminView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("je")),
-      body: Column(children: [
-        ElevatedButton(
-            child: Text("添加分类"),
-            onPressed: () {
-              Get.toNamed(Routes.adminCategory);
-            }),
-        ElevatedButton(
-            child: Text("添加问题"),
-            onPressed: () {
-              Get.toNamed(Routes.adminQA);
-            }),
-      ]),
+      body: const Column(children: []),
     );
   }
 }

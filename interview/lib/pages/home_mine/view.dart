@@ -22,10 +22,14 @@ class HomeMineViewState extends State<HomeMineView> {
   Widget build(BuildContext context) {
     return Column(children: [
       ElevatedButton(
-          child: const Text("管理中心"),
+          child: const Text("分类管理"),
           onPressed: () {
-            logger.i("跳转到管理中心");
-            Get.toNamed(Routes.admin);
+            Get.toNamed(Routes.adminCategory);
+          }),
+      ElevatedButton(
+          child: const Text("问题管理"),
+          onPressed: () {
+            Get.toNamed(Routes.adminQA);
           }),
       ElevatedButton(
           onPressed: () async {
