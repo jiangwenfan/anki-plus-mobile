@@ -1,9 +1,5 @@
 import 'common.dart';
 
-typedef CategoryModelSet = List<CategoryModel>;
-// category接口的返回数据类型
-typedef CategoryResponse = Map<String, CategoryModelSet>;
-
 // Category接口中每个category的数据
 class CategoryModel {
   final int id;
@@ -37,6 +33,10 @@ class ListCategoryModel {
 
   ListCategoryModel({required this.categoryModel, required this.bigCategory});
 }
+
+typedef CategoryModelSet = List<CategoryModel>;
+// category接口的返回数据类型
+typedef CategoryResponse = Map<String, CategoryModelSet>;
 
 // 接口转换处理
 class CategoryDataStatus extends DataStatus {
