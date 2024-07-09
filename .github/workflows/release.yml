@@ -32,6 +32,10 @@ jobs:
           # 请根据需要调整版本
           flutter-version: '3.22.2'
 
+      # 将 .env 配置内容写入到 .env 文件
+      - name: write config to .env
+        run: echo ${{ secrets.ENV_CONFIG_CONTENT }} > .env
+
       - name: Flutter Pub Get
         run: flutter pub get
 
