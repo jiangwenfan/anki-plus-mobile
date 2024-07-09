@@ -5,6 +5,7 @@ import 'controller.dart';
 import '../../routes.dart';
 import '../../utils.dart';
 import '../home/controller.dart';
+import '../login_google/view.dart';
 
 final logger = Logger();
 
@@ -43,7 +44,8 @@ class HomeMineViewState extends State<HomeMineView> {
             String? t = await getLocalToken();
             print("当前token: ${t}");
           },
-          child: Text("退出登录"))
+          child: Text("退出登录")),
+      SignInDemo()
     ]);
   }
 }
