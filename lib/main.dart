@@ -3,7 +3,7 @@ import 'pages/home/config.dart';
 import 'package:get/get.dart';
 import 'utils.dart';
 import 'package:logger/logger.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
+// import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import 'routes.dart';
 
@@ -12,7 +12,8 @@ Logger logger = Logger();
 
 void main() async {
   // read env file
-  await dotenv.load(fileName: ".env");
+  // await dotenv.load(fileName: ".env");
+
   // login
   WidgetsFlutterBinding.ensureInitialized();
   tokenData = await getLocalToken();
@@ -20,7 +21,7 @@ void main() async {
 
   runApp(GetMaterialApp(
     title: "Application",
-    initialRoute: Routes.home,
+    initialRoute: Routes.login,
     initialBinding: GlobalBinding(),
     getPages: getPages,
     theme: ThemeData(
