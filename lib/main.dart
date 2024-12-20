@@ -1,31 +1,17 @@
 import 'package:flutter/material.dart';
-import 'pages/home/config.dart';
-import 'package:get/get.dart';
-import 'utils.dart';
-import 'package:logger/logger.dart';
-// import 'package:flutter_dotenv/flutter_dotenv.dart';
-
-import 'routes.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'app.dart';
 
 String? tokenData;
-Logger logger = Logger();
 
-void main() async {
-  // read env file
-  // await dotenv.load(fileName: ".env");
+Future main() async {
+  // 读取env配置
+  await dotenv.load(fileName: ".env");
 
   // login
-  WidgetsFlutterBinding.ensureInitialized();
-  tokenData = await getLocalToken();
-  logger.i("token: $tokenData");
+  // WidgetsFlutterBinding.ensureInitialized();
+  // tokenData = await getLocalToken();
+  // logger.i("token: $tokenData");
 
-  runApp(GetMaterialApp(
-    title: "Application",
-    initialRoute: Routes.login,
-    initialBinding: GlobalBinding(),
-    getPages: getPages,
-    theme: ThemeData(
-      scaffoldBackgroundColor: const Color(0xFFF4F2FA),
-    ),
-  ));
+  runApp(const App());
 }

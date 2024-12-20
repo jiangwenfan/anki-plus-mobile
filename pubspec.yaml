@@ -2,48 +2,71 @@ name: interview
 version: 1.0.0+1
 publish_to: none
 description: A new Flutter project.
-environment: 
-  sdk: '>=3.3.3 <4.0.0'
+environment:
+  sdk: ">=3.3.3 <4.0.0"
 
-dependencies: 
+dependencies:
   cupertino_icons: ^1.0.6
-  get: 4.6.6
-  flutter: 
-    sdk: flutter
-  flutter_markdown: ^0.7.1
-  dio: ^5.4.3+1
+
+  # 系统相关
+  flutter_dotenv: ^5.2.1
   logger: ^2.3.0
+  dio: ^5.4.3+1
+  go_router: ^14.6.2
+
+  # model 生成
+  freezed_annotation: ^2.4.4
+  json_annotation: ^4.9.0
+
+  # 状态管理相关
   shared_preferences: ^2.2.3
+  flutter_hooks: ^0.20.5
+  flutter_riverpod: ^2.6.1
+  riverpod_annotation: ^2.6.1
+  hooks_riverpod: ^2.6.1
+
+  # ui相关
+  flutter_markdown: ^0.7.1
   flutter_slidable: ^3.1.0
   google_sign_in: ^6.2.1
-  flutter_dotenv: ^5.1.0
 
-dev_dependencies: 
-  flutter_launcher_icons: ^0.13.1
-  flutter_lints: ^3.0.0
-  flutter_test: 
+  flutter:
     sdk: flutter
 
-flutter: 
-  uses-material-design: true
+dev_dependencies:
+  flutter_launcher_icons: ^0.13.1
+  flutter_lints: ^3.0.0
 
-flutter_launcher_icons: 
+  custom_lint:
+  riverpod_generator: ^2.6.1
+  riverpod_lint: ^2.6.1
+  # 代码生成
+  build_runner:
+  freezed: ^2.5.7
+  json_serializable: ^6.8.1
+
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+  assets:
+    - .env
+
+flutter_launcher_icons:
   android: launcher_icon
   image_path: assets/images/logo.webp
-  web: 
+  web:
     image_path: assets/images/logo.webp
-    background_color: '#hexcode'
-    theme_color: '#hexcode'
+    background_color: "#hexcode"
+    theme_color: "#hexcode"
     generate: true
-  windows: 
+  windows:
     image_path: assets/images/logo.webp
     generate: true
     icon_size: 48
-  macos: 
+  macos:
     image_path: assets/images/logo.webp
     generate: true
   ios: true
   min_sdk_android: 21
-
-assets:
-  - .env
