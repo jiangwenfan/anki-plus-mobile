@@ -4,7 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../data/api.dart';
 import '../data/model.dart';
-import './login_home.dart';
+import 'login_home.dart';
 import 'package:interview/providers/login.dart';
 
 class EmailPwd extends HookConsumerWidget {
@@ -120,13 +120,15 @@ class EmailPwd extends HookConsumerWidget {
                     //   "token": accessToken,
                     // };
 
+                    // 等待状态更新完成
+                    // await Future.delayed(Duration(milliseconds: 10000));
                     // 更新isLoading为false
                     isLoading.state = false;
-
                     // 跳转
+                    print("当前状态-start: ${ref.read(loginNotifierProvider)}");
                     context.go("/home");
                     print("跳转到home");
-                    print("当前状态: ${ref.read(loginNotifierProvider)}");
+                    print("当前状态-end: ${ref.read(loginNotifierProvider)}");
                   }
                 : null,
             style: ElevatedButton.styleFrom(

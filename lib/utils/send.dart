@@ -16,10 +16,37 @@ class RequestResponse extends DataStatus {
 
 // 发送各种网络请求，处理返回结果
 class SendRequest {
-  final Dio dio = Dio();
+  late final Dio dio;
   String url;
 
-  SendRequest(this.url);
+  SendRequest(this.url, {String? token}) {
+    dio = Dio(BaseOptions(
+      baseUrl: url,
+      connectTimeout: const Duration(seconds: 10),
+      receiveTimeout: const Duration(seconds: 10),
+    ));
+
+    // 添加拦截器
+    dio.interceptors.add(
+      InterceptorsWrapper(
+        onRequest: (options, handler) {
+          // 在请求头中添加 Token
+          if (token != null && token.isNotEmpty) {
+            options.headers['Authorization'] = 'Bearer $token';
+          }
+          return handler.next(options); // 继续请求
+        },
+        onError: (error, handler) {
+          // 处理错误，例如 Token 过期
+          if (error.response?.statusCode == 401) {
+            // Token 过期逻辑，比如刷新 Token 或重新登录
+            print("Token 过期: $token");
+          }
+          return handler.next(error);
+        },
+      ),
+    );
+  }
 
   // 发送get请求
   Future<RequestResponse> get() async {

@@ -27,9 +27,9 @@ dependencies:
 
   # ui相关
   flutter_markdown: ^0.7.1
-  flutter_slidable: ^3.1.0
   google_sign_in: ^6.2.1
   loader_overlay: ^5.0.0 # 交互的遮罩层loading
+  flutter_slidable: ^3.1.2 # 可以左右滑动的listTile
 
   flutter:
     sdk: flutter
