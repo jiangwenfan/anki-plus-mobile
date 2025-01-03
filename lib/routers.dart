@@ -17,7 +17,7 @@ import 'package:flutter/material.dart';
 import 'package:interview/providers/login.dart';
 
 // 使用 Riverpod 容器访问全局变量
-final container = ProviderContainer();
+// final container = ProviderContainer();
 
 // 模拟登录状态 Provider
 // final isLoggedInProvider = StateProvider<bool>((ref) => false);
@@ -64,12 +64,13 @@ final GoRouter routerConfig = GoRouter(
   routes: routes,
   initialLocation: '/home',
   redirect: (BuildContext context, GoRouterState state) {
+    //  获取全局的 ProviderContainer
+    final container = ProviderScope.containerOf(context);
     // 获取当前登陆状态
-    Map<String, dynamic> loginState =
-        container.read(loginStateProvider) as Map<String, dynamic>;
+    Map<String, dynamic> loginState = container.read(loginNotifierProvider);
 
     // print("---fullPath: ${state.fullPath}-----");
-    // print("isLoggedIn: $isLoggedIn ${isLoggedIn.runtimeType}");
+    print("---loginState: $loginState-----");
 
     // 如果未登录且不是在 /login_home，跳转到 /login_home
     if (!loginState["isLogin"] && state.fullPath != '/login_home') {

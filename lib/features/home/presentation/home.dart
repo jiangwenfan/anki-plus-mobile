@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:logger/logger.dart';
 
 final logger = Logger();
@@ -28,9 +28,42 @@ class Home extends StatelessWidget {
       //   ),
       // ),
       // body: Obx(() => controller.tabsWidget[controller.currentTabIndex.value]),
-      body: const Center(
-        child: Text("Home"),
+      body: ListView.builder(
+        padding: EdgeInsets.all(20),
+        itemBuilder: (context, index) {
+          return Note(title: "11", desc: "22", noteId: index);
+        },
+        itemCount: 20,
       ),
+    );
+  }
+}
+
+// note
+class Note extends HookConsumerWidget {
+  final String title;
+  final String desc;
+  final int noteId;
+  const Note(
+      {super.key,
+      required this.title,
+      required this.desc,
+      required this.noteId});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return Container(
+      child: ListTile(
+        title: Text(title),
+        subtitle: Text(title),
+        onTap: () {
+          logger.i("Note $noteId clicked");
+        },
+      ),
+      margin: EdgeInsets.fromLTRB(0, 0, 0, 10),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15),
+          color: Color.fromRGBO(255, 255, 255, 1)),
     );
   }
 }

@@ -6,21 +6,21 @@ part of 'login.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$loginStateHash() => r'118f90000d7ba1c7d5685aa856f6ebdd0b368e52';
+String _$loginNotifierHash() => r'0ee72e6453f7f931fffa06c14c2f85f4214d64cd';
 
-/// See also [loginState].
-@ProviderFor(loginState)
-final loginStateProvider = AutoDisposeProvider<Map<String, dynamic>>.internal(
-  loginState,
-  name: r'loginStateProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$loginStateHash,
+/// See also [LoginNotifier].
+@ProviderFor(LoginNotifier)
+final loginNotifierProvider =
+    AutoDisposeNotifierProvider<LoginNotifier, Map<String, dynamic>>.internal(
+  LoginNotifier.new,
+  name: r'loginNotifierProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$loginNotifierHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef LoginStateRef = AutoDisposeProviderRef<Map<String, dynamic>>;
+typedef _$LoginNotifier = AutoDisposeNotifier<Map<String, dynamic>>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

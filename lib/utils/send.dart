@@ -10,7 +10,7 @@ final logger = Logger();
 //logger.w("get请求,$url 接口[响应]异常");
 // 接口请求的`响应结果`
 class RequestResponse extends DataStatus {
-  String? rawResponse;
+  Map<String, dynamic>? rawResponse;
   RequestResponse({required super.status, super.errorMsg, this.rawResponse});
 }
 
@@ -28,7 +28,8 @@ class SendRequest {
       // response.data Map<String, dynamic>
       logger.i("get请求,$url 成功. ${response.data}");
       final res = RequestResponse(
-          status: true, rawResponse: json.encode(response.data));
+          status: true,
+          rawResponse: json.encode(response.data) as Map<String, dynamic>);
       return res;
     } else {
       logger.w("get请求,$url 接口[状态]异常");
