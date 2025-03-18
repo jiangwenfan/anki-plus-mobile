@@ -1,0 +1,23 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "b-log",
+            "type": "shell",
+            "command": "docker logs -f interview-backend",
+            "problemMatcher": [],
+        },
+        {
+            "label": "b-bash",
+            "type": "shell",
+            "command": "docker exec -it interview-backend /bin/bash",
+            "problemMatcher": []
+        },
+        {
+            "label": "b-restart",
+            "type": "shell",
+            "command": "docker compose -f /Users/jason/personal_project/github_projects/anki-plus-backend/interview/compose.yml down && docker compose -f /Users/jason/personal_project/github_projects/anki-plus-backend/interview/compose.yml up -d",
+            "problemMatcher": []
+        }
+    ]
+}
